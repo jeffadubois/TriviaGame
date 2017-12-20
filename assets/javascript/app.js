@@ -1,53 +1,13 @@
 var theTimeOut;
-var maxSecondsForGame = 25;
-var maxMilliseconds = 25000;
+var maxSecondsForGame = 10;
+var maxMilliseconds = 10000;
 var secondsRemaining = 25;
 var theCountDown;
 var numberCorrect = 0;
 var numberInCorrect = 0;
 var firstTime = true;
 var gameOn = false;
-
-var questions = [ 
-							{
-
-							"question": "To whom does the title of Mary Shelly's 'Frankenstein' refer?",
-
-							"A": "The Author",
-
-							"B": "The Monster",
-
-							"C": "The Doctor",
-
-							"D": "The Narrator",
-
-							"answer": "C",
-
-							},
-
-							{
-
-							"question": "What is the Great Gatsby's first name?",
-
-							"A": "Tom",
-
-							"B": "Robert",
-
-							"C": "Nick",
-
-							"D": "Jay",
-
-							"answer": "D",
-
-							"winningImage": "assets/images/giphy-downsized-large.gif",
-
-							"incorrectImage": "assets/images/check.gif",
-
-							"answerText": "Jay Gatsby"
-
-							}
-				];
-
+var totalNumQuestions = 3;
 
 $(document).ready(function(){
 
@@ -67,28 +27,40 @@ $('#startbtn').on('click', function (e) {
 	numberCorrect = 0;
 	numberInCorrect = 0;
     $("#remainingTime").html("<h2>You have " + secondsRemaining + " seconds left</h2>");
-	displayQuestions();
-	
-	console.log("first question is");
-	console.log(questions[0].question);
+	//displayQuestions();
+	resetRadioButtons();
 
 });
 
+function resetRadioButtons(){
+	 $("input#radio121").prop("checked", false);
+	 $("input#radio120").prop("checked", false);
+	 $("input#radio122").prop("checked", false);
+	 $("input#radio130").prop("checked", false);
+	 $("input#radio131").prop("checked", false);
+	 $("input#radio132").prop("checked", false);
+	 $("input#radio140").prop("checked", false);
+	 $("input#radio141").prop("checked", false);
+	 $("input#radio142").prop("checked", false);	 
+	 }
 
 function tallyResults(){
 	gameOn = false;
 	numberCorrect = 0;
-	var totalNum = 2;
     var q1Win =  $("input#radio121").prop("checked");
-     var q2Win =  $("input#radio131").prop("checked");
+    var q2Win =  $("input#radio131").prop("checked");
+	var q3Win =  $("input#radio141").prop("checked");
 	 if (q1Win == true){
 		   numberCorrect++;
 	 }
 	 if (q2Win == true){
 		   numberCorrect++;
 	 }
+	 if (q3Win == true){
+		   numberCorrect++;
+	 }
 
-     numberInCorrect = totalNum - numberCorrect;
+     numberInCorrect = totalNumQuestions - numberCorrect;
 
 	 clearTimeout(theTimeOut);
 	 clearInterval(theCountDownInterval);
@@ -109,16 +81,6 @@ function countDown() {
 	}
 }
 
-function displayQuestions(){
-		
-	console.log("first question is");
-	console.log(questions[0].question);
-	for (var i = 0; i < questions.length; i++){
-	    var ques = questions[i];
-	}
-	
-	
-}
 
 });// end document ready
 
