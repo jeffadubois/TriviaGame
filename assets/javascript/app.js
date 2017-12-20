@@ -5,7 +5,7 @@ var secondsRemaining = 25;
 var theCountDown;
 var numberCorrect = 0;
 var numberInCorrect = 0;
-
+var firstTime = true;
 var gameOn = false;
 
 $(document).ready(function(){
@@ -13,8 +13,9 @@ $(document).ready(function(){
 //clicking on the start button starts the game.
 $('#startbtn').on('click', function (e) {
  	console.log("clicked on startbtn");
-	
-    alert( "Note - You have " + maxSecondsForGame +  " seconds to answer the trivia questions." );
+	if (firstTime == true){
+           alert( "Note - You have " + maxSecondsForGame +  " seconds to answer the trivia questions." );
+	}
     gameOn = true;
 	theCountDownInterval = setInterval(countDown, 1000);
 	theTimeOut = setTimeout(tallyResults, maxMilliseconds);  
